@@ -47,7 +47,7 @@ function UserInterface({onSubmitData}) {
         setInput("");
         try{
             // 2) Call your backend AI endpoint
-            const res=await fetch("http://localhost:4000/api/reply",{
+            const res=await fetch("https://ai-chat-api.onrender.com/api/reply",{
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ prompt: currentInput }),
