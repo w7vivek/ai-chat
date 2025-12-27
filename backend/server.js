@@ -6,7 +6,7 @@ const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
-const OR_API_KEY = "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"; // real key
+const OR_API_KEY = "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"; // real key
 const OR_MODEL = "mistralai/devstral-2512:free";
 
 app.post("/api/reply", async (req, res) => {
@@ -43,13 +43,13 @@ app.post("/api/reply", async (req, res) => {
     const data = await response.json();
     console.log("OpenRouter status:", response.status);
     console.log("OpenRouter data:", data);
+    console.log("OR_API_KEY loaded?", !!OR_API_KEY);
 
     if (!response.ok) {
-      console.error("OpenRouter error body:", data);
-      return res
-        .status(500)
-        .json({ error: data.error?.message || "OpenRouter error" });
-    }
+  return res.status(response.status).json({
+    error: data.error?.message || "OpenRouter error",
+  });
+}
 
     const reply =
       data.choices?.[0]?.message?.content?.trim() ||
