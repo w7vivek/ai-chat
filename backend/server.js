@@ -3,7 +3,12 @@ import cors from "cors";
 import fetch from "node-fetch";
 
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://w7vivek.github.io"
+  ]
+}));
 app.use(express.json());
 
 const OR_API_KEY = "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"; // real key
